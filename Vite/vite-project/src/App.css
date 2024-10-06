@@ -6,6 +6,24 @@
   --background-color: #8a8a8a;
   --nav-color: #283593; /* A professional contrasting color for the nav bar */
   --text-color: #213547;
+  --segment-bg-color: #f0f0f0;
+  --segment-border-color: #ddd;
+  --segment-text-color: #333; /* New text color for segments */
+  --highlight-bg-color: #e0e0e0; /* Subtle highlight color */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 #root {
@@ -18,13 +36,13 @@
 .nav {
   background-color: var(--nav-color);
   color: white;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 12px; /* Add rounded corners */
+  margin-top: 10px;
 }
 
 .nav ul {
@@ -32,7 +50,8 @@
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 2rem; /* Space between nav links */
+  flex-direction: column; /* Mobile first: stack links */
+  gap: 1rem;
 }
 
 .nav li {
@@ -43,21 +62,32 @@
   color: white;
   text-decoration: none;
   font-weight: bold;
+  transition: text-shadow 0.3s ease-in-out; /* Smooth transition */
 }
 
 .nav a:hover {
   color: var(--hover-color);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+}
+
+main {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 4em;
+  padding: 1em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em var(--shadow-color));
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em var(--react-shadow-color));
 }
@@ -83,8 +113,8 @@
   flex-direction: column;
   align-items: center;
   gap: 1em;
-  padding: 2em;
-  margin: 2px;
+  padding: 1em;
+  margin: 1rem 0;
   border: #535bf2;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -101,4 +131,50 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.about-segment {
+  background-color: var(--highlight-bg-color);
+  border: 1px solid var(--segment-border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: var(--segment-text-color); /* Ensure text color contrasts with background */
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.about-segment p:first-child {
+  font-size: 1.2rem; /* Slightly larger font for the first paragraph */
+  font-weight: bold; /* Emphasize the first paragraph */
+}
+
+/* Tablet and larger screens */
+@media (min-width: 600px) {
+  .nav ul {
+    flex-direction: row; /* Row layout for larger screens */
+    justify-content: center; /* Center nav links */
+  }
+
+  .card {
+    flex-direction: row; /* Side by side layout for card contents */
+    align-items: flex-start; /* Align items at the start */
+  }
+
+  .card h3, .card p, .card a {
+    text-align: left; /* Left align text */
+  }
+
+  main {
+    align-items: center; /* Center content horizontally */
+    margin: 0 auto; /* Center content horizontally */
+  }
+}
+
+/* Desktop and larger screens */
+@media (min-width: 1024px) {
+  .about-segment {
+    margin: 2rem auto;
+    max-width: 800px; /* Limit width for better readability */
+  }
 }
